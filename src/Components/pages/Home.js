@@ -3,19 +3,19 @@ import { Link, useParams } from "react-router-dom";
 
 function Home() {
 	const local = localStorage.getItem("emp_details");
-	const emp_details = JSON.parse(local);
+	const emp_details = local
+		? JSON.parse(local)
+		: [
+				{
+					name: "Rahul",
+					username: "rahul2000",
+					email: "rahul@cm.com",
+				},
+		  ];
 
 	const { id } = useParams();
 	const updatedList = emp_details.filter((item) => item.id !== id);
 
-	// const deleteEmp = async (id) => {
-	// 	await axios.delete(`http://localhost:3003/users/${id}`);
-	// 	loadUsers();
-	// };
-
-	// const editEmp = async (id) => {
-	// 	await axios.delete(`http://localhost:3003/users/${id}`);
-	// };
 	return (
 		<div className="container">
 			<div className="py-4">
